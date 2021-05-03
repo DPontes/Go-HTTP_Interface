@@ -13,5 +13,10 @@ func main() {
     os.Exit(1)
   }
 
-  fmt.Println(resp)
+  // an alterative way of creating an empty byte slice with size for 99999 elements
+  // Given that the function Read cannot resize the slice, we need to preemptively alocate enough space for the data that it will handle
+  bs := make([]byte, 99999)
+
+  resp.Body.Read(bs)
+  fmt.Println(string(bs))
 }
